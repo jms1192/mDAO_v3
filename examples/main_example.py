@@ -143,7 +143,7 @@ with st.spinner("Displaying results..."):
         chart_data = selected ##_df.loc['Token', 'USD Amount']
     else:
         chart_data = dict1
-        st.subheader(dict1)
+        st.subheader(df)
     ##else:
     ##    chart_data = df
     
