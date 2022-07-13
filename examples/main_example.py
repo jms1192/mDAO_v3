@@ -137,17 +137,12 @@ selected_df = pd.DataFrame(selected).apply(pd.to_numeric, errors='coerce')
 
 with st.spinner("Displaying results..."):
     
-    ##df.assign(source='total')
-    ##if not selected_df.empty
     if len(selected) > 0:
         chart_data = selected ##_df.loc['Token', 'USD Amount']
+        st.subheader(selected)
     else:
         chart_data = df.to_dict('records')
-        st.subheader(df)
-    ##else:
-    ##    chart_data = df
     
-    #st.subheader(chart_data)
     
     ## income/outcome start 
     if chart_data[0]['USD Amount'].isdecimal():
