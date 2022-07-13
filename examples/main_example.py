@@ -81,22 +81,6 @@ gb.configure_default_column(groupable=True, value=True, enableRowGroup=True, agg
 #gb.configure_column("chocolate", type=["numericColumn", "numberColumnFilter", "customCurrencyFormat"], custom_currency_symbol="R$", aggFunc='max')
 
 #configures last row to use custom styles based on cell's value, injecting JsCode on components front end
-cellsytle_jscode = JsCode("""
-function(params) {
-    if (params.value == 'A') {
-        return {
-            'color': 'white',
-            'backgroundColor': 'darkred'
-        }
-    } else {
-        return {
-            'color': 'black',
-            'backgroundColor': 'white'
-        }
-    }
-};
-""")
-gb.configure_column("group", cellStyle=cellsytle_jscode)
 
 if enable_sidebar:
     gb.configure_side_bar()
@@ -118,11 +102,9 @@ gb.configure_grid_options(domLayout='normal')
 gridOptions = gb.build()
 
 #Display the grid
-st.header("Streamlit Ag-Grid")
+st.header("mDAO Treasury Data")
 st.markdown("""
-    AgGrid can handle many types of columns and will try to render the most human readable way.  
-    On editions, grid will fallback to string representation of data, DateTime and TimeDeltas are converted to ISO format.
-    Custom display formating may be applied to numeric fields, but returned data will still be numeric.
+    Lets look at the data 
 """)
 
 grid_response = AgGrid(
