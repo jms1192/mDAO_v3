@@ -145,7 +145,7 @@ with st.spinner("Displaying results..."):
     
     
     ## income/outcome start 
-    if chart_data[0]['USD Amount'].isdecimal():
+    #if chart_data[0]['USD Amount'].isdecimal():
     
     if len(chart_data) > 0:
         outgoing_sum = sum([float(x['USD Amount']) for x in chart_data if x['Incoming/Outgoing'] == 'Outgoing' and isfloat(x['USD Amount'])])     
