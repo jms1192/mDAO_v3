@@ -176,34 +176,4 @@ with st.spinner("Displaying results..."):
         selected_data = selected_df.loc[:,['apple','banana','chocolate']].assign(source='selection')
         chart_data = pd.concat([chart_data, selected_data])
 
-    chart_data = pd.melt(chart_data, id_vars=['source'], var_name="item", value_name="quantity")
-    #st.dataframe(chart_data)
-    chart = alt.Chart(data=chart_data).mark_bar().encode(
-        x=alt.X("item:O"),
-        y=alt.Y("sum(quantity):Q", stack=False),
-        color=alt.Color('source:N', scale=alt.Scale(domain=['total','selection'])),
-    )
-
-    st.header("Component Outputs - Example chart")
-    st.markdown("""
-    This chart is built with data returned from the grid. rows that are selected are also identified.
-    Experiment selecting rows, group and filtering and check how the chart updates to match.
-    """)
-
-    #st.altair_chart(chart, use_container_width=True)
-
-    st.subheader("Returned grid data:") 
-    #returning as HTML table bc streamlit has issues when rendering dataframes with timedeltas:
-    # https://github.com/streamlit/streamlit/issues/3781
-    st.markdown(grid_response['data'].to_html(), unsafe_allow_html=True)
-
-    st.subheader("grid selection:")
-    st.write(grid_response['selected_rows'])
-
-    st.header("Generated gridOptions")
-    st.markdown("""
-        All grid configuration is done thorugh a dictionary passed as ```gridOptions``` parameter to AgGrid call.
-        You can build it yourself, or use ```gridOptionBuilder``` helper class.  
-        Ag-Grid documentation can be read [here](https://www.ag-grid.com/documentation)
-    """)
-    st.write(gridOptions)
+    
