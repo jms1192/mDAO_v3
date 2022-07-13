@@ -82,7 +82,15 @@ if enable_pagination:
         paginationPageSize = st.sidebar.number_input("Page size", value=5, min_value=0, max_value=sample_size)
     st.sidebar.text("___")
 
-df = fetch_data(sample_size)
+### make the first edit here 
+data1 = pd.read_csv(os.path.join(root, "data/t1.csv"))              
+data1.values.tolist()
+dict1 = {}
+for x in data1:
+    dict1[x] = data1[x]
+
+df = pd.DataFrame(dict1)
+### finish first edit 
 
 #Infer basic colDefs from dataframe types
 gb = GridOptionsBuilder.from_dataframe(df)
@@ -151,17 +159,8 @@ grid_response = AgGrid(
     fit_columns_on_grid_load=fit_columns_on_grid_load,
     allow_unsafe_jscode=True, #Set it to True to allow jsfunction to be injected
     enable_enterprise_modules=enable_enterprise_modules,
-    )
+  )
 
-### make the first edit here 
-data1 = pd.read_csv(os.path.join(root, "data/t1.csv"))              
-data1.values.tolist()
-dict1 = {}
-for x in data1:
-    dict1[x] = data1[x]
-
-df = pd.DataFrame(dict1)
-### finish first edit 
 
 
 
