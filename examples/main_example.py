@@ -90,11 +90,11 @@ gb = GridOptionsBuilder.from_dataframe(df)
 #customize gridOptions
 gb.configure_default_column(groupable=True, value=True, enableRowGroup=True, aggFunc='sum', editable=True)
 
-gb.configure_column("date_tz_aware", type=["dateColumnFilter","customDateTimeFormat"], custom_format_string='yyyy-MM-dd HH:mm zzz', pivot=True)
+#gb.configure_column("date_tz_aware", type=["dateColumnFilter","customDateTimeFormat"], custom_format_string='yyyy-MM-dd HH:mm zzz', pivot=True)
 
-gb.configure_column("apple", type=["numericColumn","numberColumnFilter","customNumericFormat"], precision=2, aggFunc='sum')
-gb.configure_column("banana", type=["numericColumn", "numberColumnFilter", "customNumericFormat"], precision=1, aggFunc='avg')
-gb.configure_column("chocolate", type=["numericColumn", "numberColumnFilter", "customCurrencyFormat"], custom_currency_symbol="R$", aggFunc='max')
+#gb.configure_column("apple", type=["numericColumn","numberColumnFilter","customNumericFormat"], precision=2, aggFunc='sum')
+#gb.configure_column("banana", type=["numericColumn", "numberColumnFilter", "customNumericFormat"], precision=1, aggFunc='avg')
+#gb.configure_column("chocolate", type=["numericColumn", "numberColumnFilter", "customCurrencyFormat"], custom_currency_symbol="R$", aggFunc='max')
 
 #configures last row to use custom styles based on cell's value, injecting JsCode on components front end
 cellsytle_jscode = JsCode("""
@@ -152,6 +152,18 @@ grid_response = AgGrid(
     allow_unsafe_jscode=True, #Set it to True to allow jsfunction to be injected
     enable_enterprise_modules=enable_enterprise_modules,
     )
+
+### make the first edit here 
+data1 = pd.read_csv(os.path.join(root, "data/t1.csv"))              
+data1.values.tolist()
+dict1 = {}
+for x in data1:
+    dict1[x] = data1[x]
+
+df = pd.DataFrame(dict1)
+### finish first edit 
+
+
 
 df = grid_response['data']
 selected = grid_response['selected_rows']
