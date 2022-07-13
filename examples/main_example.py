@@ -160,7 +160,9 @@ with st.spinner("Displaying results..."):
     ## create token function
     def make_2d_graph(data, labels, values):
         label_list = []
-        [label_list.append(data[labels]) for x in data]
+        for x in data:
+            if not x[labels] in label_list:
+                label_list.append(x[labels]) 
         
         value_list = []
         for label in label_ist:
