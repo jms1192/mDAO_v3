@@ -151,7 +151,7 @@ with st.spinner("Displaying results..."):
         st.subheader(0) 
         
     st.subheader(chart_data[0]['Incoming/Outgoing'])
-    st.dataframe(chart_data)
+    st.dataframe(chart_data.astype(str))
     
     if len(chart_data) > 0:
         outgoing_sum = sum([float(x['USD Amount']) for x in chart_data if x['Incoming/Outgoing'] == 'Outgoing' and isfloat(x['USD Amount'])])     
