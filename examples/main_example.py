@@ -154,6 +154,7 @@ with st.spinner("Displaying results..."):
             [outgoing_sum, incoming_sum],
             index=['Outgoing', 'Incoming']
         )
+        st.header("USD Inflow vs Outflow")
         st.bar_chart(chart)
     ## income/outcome end
     
@@ -174,8 +175,12 @@ with st.spinner("Displaying results..."):
             index=label_list
         )
         st.bar_chart(chart)
-     
+        
+    st.header("Token Flow USD by Token")
     make_2d_graph(chart_data, 'Token Symbol', 'USD Amount')
+    
+    st.header("Token Flow USD by Category")
+    make_2d_graph(chart_data, 'Category', 'USD Amount')
         
   
 
