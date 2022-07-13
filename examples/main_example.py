@@ -170,20 +170,11 @@ selected_df = pd.DataFrame(selected).apply(pd.to_numeric, errors='coerce')
 
 
 with st.spinner("Displaying results..."):
-    #displays the chart
-    chart_data = df.loc[:,['apple','banana','chocolate']].assign(source='total')
-
-    if not selected_df.empty :
-        selected_data = selected_df.loc[:,['apple','banana','chocolate']].assign(source='selection')
-        chart_data = pd.concat([chart_data, selected_data])
-
-    chart_data = pd.melt(chart_data, id_vars=['source'], var_name="item", value_name="quantity")
-    #st.dataframe(chart_data)
-    chart = alt.Chart(data=chart_data).mark_bar().encode(
-        x=alt.X("item:O"),
-        y=alt.Y("sum(quantity):Q", stack=False),
-        color=alt.Color('source:N', scale=alt.Scale(domain=['total','selection'])),
-    )
+    df.assign(source='total')
+    if not selected_df.empty
+        chart_data = selected ##_df.loc['Token', 'USD Amount']
+    else:
+        chart_data = df
 
     st.header("Component Outputs - Example chart")
     st.markdown("""
@@ -191,7 +182,7 @@ with st.spinner("Displaying results..."):
     Experiment selecting rows, group and filtering and check how the chart updates to match.
     """)
 
-    st.altair_chart(chart, use_container_width=True)
+    #st.altair_chart(chart, use_container_width=True)
 
     st.subheader("Returned grid data:") 
     #returning as HTML table bc streamlit has issues when rendering dataframes with timedeltas:
