@@ -165,7 +165,7 @@ with st.spinner("Displaying results..."):
                 label_list.append(x[labels]) 
         
         value_list = []
-        for label in label_ist:
+        for label in label_list:
             value = sum([float(x[values]) for x in chart_data if x[labels] == label and isfloat(x[values])])
             value_list.append(value)
         
