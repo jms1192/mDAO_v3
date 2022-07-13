@@ -155,7 +155,27 @@ with st.spinner("Displaying results..."):
             index=['Outgoing', 'Incoming']
         )
         st.bar_chart(chart)
-    ## income/outcome end 
+    ## income/outcome end
+    
+    ## create token function
+    def make_2d_graph(data, labels, values):
+        label_list = []
+        [label_list.append(data[labels]) for x in data]
+        
+        value_list = []
+        for label in label_ist:
+            value = sum([float(x[values]) for x in chart_data if x[labels] == label and isfloat(x[values])])
+            value_list.append(value)
+        
+        chart = pd.DataFrame(
+            value_list,
+            index=label_list
+        )
+        st.bar_chart(chart)
+     
+    make_2d_graph(chart_data, 'Token Symbol', 'USD Amount')
+        
+  
 
 
 
