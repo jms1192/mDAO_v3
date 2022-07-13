@@ -139,7 +139,10 @@ with st.spinner("Displaying results..."):
     
     ##df.assign(source='total')
     ##if not selected_df.empty
-    chart_data = selected ##_df.loc['Token', 'USD Amount']
+    if len(selected) > 0:
+        chart_data = selected ##_df.loc['Token', 'USD Amount']
+    else:
+        st.subheader(df) 
     ##else:
     ##    chart_data = df
     
