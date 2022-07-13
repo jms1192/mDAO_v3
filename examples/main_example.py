@@ -146,14 +146,16 @@ with st.spinner("Displaying results..."):
     st.dataframe(chart_data)
     
     if len(chart_data) > 0:
-        outgoing_sum = sum([float(x['USD Amount']) for x in chart_data if x['Incoming/Outgoing'] == 'Outgoing' and isfloat(x['USD Amount'])])            
+        outgoing_sum = [x['USD Amount'] for x in chart_data if x['Incoming/Outgoing'] == 'Outgoing' and isfloat(x['USD Amount'])]            
         #incoming_sum = sum([float(x['USD Amount']) for x in chart_data if x['Incoming/Outgoing'] == 'Incoming' and isfloat(x['USD Amount'])])
+        
+        st.subheader(outgoing_sum)
     
-        chart = pd.DataFrame(
-            [outgoing_sum, 2],
-            index=['Outgoing', 'Incoming']
-        )
-        st.bar_chart(chart)
+        #chart = pd.DataFrame(
+        #    [outgoing_sum, 2],
+        #    index=['Outgoing', 'Incoming']
+        #)
+        #st.bar_chart(chart)
         ## income/outcome end 
 
 
