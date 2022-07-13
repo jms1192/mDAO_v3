@@ -170,10 +170,4 @@ selected_df = pd.DataFrame(selected).apply(pd.to_numeric, errors='coerce')
 
 
 with st.spinner("Displaying results..."):
-    chart_data = df.loc[:,['apple','banana','chocolate']].assign(source='total')
-
-    if not selected_df.empty :
-        selected_data = selected_df.loc[:,['apple','banana','chocolate']].assign(source='selection')
-        chart_data = pd.concat([chart_data, selected_data])
-
-    
+    chart_data = df
