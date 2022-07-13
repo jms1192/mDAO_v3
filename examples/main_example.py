@@ -126,6 +126,39 @@ df = grid_response['data']
 selected = grid_response['selected_rows']
 selected_df = pd.DataFrame(selected).apply(pd.to_numeric, errors='coerce')
 
+with st.spinner("Displaying results..."):
+    
+    df.assign(source='total')
+    if not selected_df.empty
+        chart_data = selected ##_df.loc['Token', 'USD Amount']
+    else:
+        chart_data = df
+    
+    #st.subheader(chart_data)
+    
+    ## income/outcome start 
+    if chart_data[0]['USD Amount'].isdecimal():
+        st.subheader(chart_data[0]['USD Amount'])
+    else:
+        st.subheader(0) 
+        
+    st.subheader(chart_data[0]['Incoming/Outgoing'])
+    st.dataframe(chart_data)
+    
+    outgoing_sum = sum([float(x['USD Amount']) for x in chart_data 
+                if x['Incoming/Outgoing'] == 'Outgoing' 
+                and isfloat(x['USD Amount'])])
+    incoming_sum = sum([float(x['USD Amount']) for x in chart_data 
+                if x['Incoming/Outgoing'] == 'Incoming' 
+                and isfloat(x['USD Amount'])])
+    
+    chart = pd.DataFrame(
+            [outgoing_sum, incoming_sum],
+            index=['Outgoing', 'Incoming']
+     )
+    st.bar_chart(chart)
+    ## income/outcome end 
+
 
 with st.spinner("Displaying results..."):
     chart_data = df
