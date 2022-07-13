@@ -10,32 +10,8 @@ from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 
 np.random.seed(42)
 
-@st.cache(allow_output_mutation=True)
-def fetch_data(samples):
-    deltas = cycle([
-            pd.Timedelta(weeks=-2),
-            pd.Timedelta(days=-1),
-            pd.Timedelta(hours=-1),
-            pd.Timedelta(0),
-            pd.Timedelta(minutes=5),
-            pd.Timedelta(seconds=10),
-            pd.Timedelta(microseconds=50),
-            pd.Timedelta(microseconds=10)
-            ])
-    dummy_data = {
-        "date_time_naive":pd.date_range('2021-01-01', periods=samples),
-        "apple":np.random.randint(0,100,samples) / 3.0,
-        "banana":np.random.randint(0,100,samples) / 5.0,
-        "chocolate":np.random.randint(0,100,samples),
-        "group": np.random.choice(['A','B'], size=samples),
-        "date_only":pd.date_range('2020-01-01', periods=samples).date,
-        "timedelta":[next(deltas) for i in range(samples)],
-        "date_tz_aware":pd.date_range('2022-01-01', periods=samples, tz="Asia/Katmandu")
-    }
-    return pd.DataFrame(dummy_data)
-
 #Example controlers
-st.sidebar.subheader("St-AgGrid example options")
+st.sidebar.subheader("mDAO Treasury Data")
 
 sample_size = st.sidebar.number_input("rows", min_value=10, value=30)
 grid_height = st.sidebar.number_input("Grid height", min_value=200, max_value=800, value=300)
